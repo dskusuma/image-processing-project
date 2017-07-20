@@ -22,7 +22,7 @@ function varargout = main(varargin)
 
 % Edit the above text to modify the response to help main
 
-% Last Modified by GUIDE v2.5 19-Jul-2017 12:33:02
+% Last Modified by GUIDE v2.5 20-Jul-2017 15:46:58
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -54,6 +54,7 @@ function main_OpeningFcn(hObject, eventdata, handles, varargin)
 
 % Choose default command line output for main
 handles.output = hObject;
+axes(handles.axes_imgori);
 
 % Update handles structure
 guidata(hObject, handles);
@@ -79,7 +80,22 @@ function pushbutton_openimage_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 [filename,pathname] = uigetfile('*.*');
+global img;
 addpath(pathname);
 img = imread(filename);
-axes(handles.axes1);
+axes(handles.axes_imgori);
+axis off;
 imshow(img);
+disp(size(img));
+
+
+% --- Executes on button press in pushbutton_grayscale.
+function pushbutton_grayscale_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton_grayscale (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global img;
+addpath('function/grayscale/');
+img_grayscale = grayscale(img);
+axes(handles.axes_imgtamp);
+imshow(img_grayscale);

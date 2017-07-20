@@ -1,0 +1,15 @@
+ALGORITHM grayscale
+input img_input (which is RGB IMAGE)
+output img_output
+
+//get image row, columns, and depth
+[rows columns depth] = size(img_input)
+
+//create new blank matrix with size of img_input
+img_output = zeros(rows, columns)
+
+for i=1 to rows do
+    for j=1 to column do
+        img_output = img_input.redChannel * 0.2989 + img_input.greenChannel * 0.5870 + img_input.blueChannel * 0.1140
+    end 
+end
