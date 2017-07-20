@@ -22,7 +22,7 @@ function varargout = main(varargin)
 
 % Edit the above text to modify the response to help main
 
-% Last Modified by GUIDE v2.5 19-Jul-2017 12:28:54
+% Last Modified by GUIDE v2.5 19-Jul-2017 12:33:02
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -71,3 +71,15 @@ function varargout = main_OutputFcn(hObject, eventdata, handles)
 
 % Get default command line output from handles structure
 varargout{1} = handles.output;
+
+
+% --- Executes on button press in pushbutton_openimage.
+function pushbutton_openimage_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton_openimage (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+[filename,pathname] = uigetfile('*.*');
+addpath(pathname);
+img = imread(filename);
+axes(handles.axes1);
+imshow(img);
