@@ -22,7 +22,7 @@ function varargout = main(varargin)
 
 % Edit the above text to modify the response to help main
 
-% Last Modified by GUIDE v2.5 21-Jul-2017 11:52:35
+% Last Modified by GUIDE v2.5 29-Jul-2017 00:14:26
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -58,6 +58,10 @@ axes(handles.axes_imgori);
 
 % Update handles structure
 guidata(hObject, handles);
+
+addpath('function/histogram/');
+addpath('function/grayscale/');
+addpath('function/brightness/');
 
 % UIWAIT makes main wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
@@ -97,7 +101,7 @@ function pushbutton_grayscale_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global img;
 global img_tamper;
-addpath('function/grayscale/');
+
 img_tamper = grayscale(img);
 axes(handles.axes_imgtamp);
 imshow(img_tamper);
@@ -132,8 +136,23 @@ function pushbutton_brightness_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global img;
 global img_tamper;
-addpath('function/brightness/');
+
 bv = get(handles.slider_brightness,'Value');
 img_tamper = brightness(img, bv);
 axes(handles.axes_imgtamp);
 imshow(img_tamper);
+
+
+% --- Executes on button press in pushbutton_histogram.
+function pushbutton_histogram_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton_histogram (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global img;
+
+n = 0:255;
+histo = histogram(img);
+axes(handles.axes_histo);
+area(n,histo);
+grid off;
+

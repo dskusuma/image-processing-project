@@ -1,0 +1,12 @@
+function [ histo ] = histogram( img_input )
+%HISTOGRAM Summary of this function goes here
+%   Detailed explanation goes here
+
+img = grayscale(img_input);
+[rows, columns] = size(img);
+
+
+for z = 1:255
+    for i 
+end
+
